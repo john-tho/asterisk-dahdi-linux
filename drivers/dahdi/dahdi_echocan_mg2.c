@@ -44,6 +44,9 @@
 static int debug;
 static int aggressive;
 
+#ifdef ABS
+#undef ABS
+#endif
 #define ABS(a) abs(a!=-32768?a:-32767)
 
 #define RESTORE_COEFFS {\
