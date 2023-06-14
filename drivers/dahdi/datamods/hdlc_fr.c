@@ -1089,10 +1089,10 @@ static int fr_add_pvc(struct net_device *master, unsigned int dlci, int type)
 	}
 
 	if (type == ARPHRD_ETHER) {
-		memcpy(dev->dev_addr, "\x00\x01", 2);
-                get_random_bytes(dev->dev_addr + 2, ETH_ALEN - 2);
+		eth_hw_addr_random(dev);
+		dev_addr_mod(dev, 0, "\x00\x01", 2);
 	} else {
-		*(u16*)dev->dev_addr = htons(dlci);
+		dev_addr_set(dev, htons(dlci));
 		dlci_to_q922(dev->broadcast, dlci);
 	}
 	dev->hard_start_xmit = pvc_xmit;

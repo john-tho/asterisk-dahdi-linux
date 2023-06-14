@@ -189,7 +189,7 @@ int vb_net_register(struct voicebus *vb, const char *board_name)
 		return -ENOMEM;
 	priv = netdev_priv(netdev);
 	priv->vb = vb;
-	memcpy(netdev->dev_addr, our_mac, sizeof(our_mac));
+	dev_addr_set(netdev, our_mac);
 #	ifdef HAVE_NET_DEVICE_OPS
 	netdev->netdev_ops = &vb_netdev_ops;
 #	else
